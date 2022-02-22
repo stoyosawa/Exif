@@ -2,7 +2,7 @@
 
 > Not designed for Jpeg file manipulation (write/modify). It's just a reader.
 
-## Synposis
+## Synoposis
 
 - `jpeg.py`: Breaks a Jpeg file into segments (such as APP1). Does not parse the data section of the segments.
 	- Class `JpegMarkers`: A container (dict) for the Jpeg markers (reads `jpeg.json` below).
@@ -88,8 +88,22 @@ Parse the Exif (APP0) data segment (obtained from JpegStruct) into its fields. I
 b'Exif\x00\x00MM\x00*\x00\x00\x00\x08\x00\r'
 
 >> exif_struct = Exif(app1_data.data)                    # Parse Exif fields
->>> str(exif_struct)
-"{'Byte order': 'big', 'Offset': 14, 'IFD count': 13, 'IFDs': [{'tag': 'Make', 'type': 'ASCII', 'value': 'Apple'}, {'tag': 'Model', 'type': 'ASCII', 'value': 'iPhone SE (2nd generation)'}, {'tag': 'Orientation', 'type': 'SHORT', 'value': 6}, {'tag': 'XResolution', 'type': 'RATIONAL', 'value': Fraction(72, 1)}, {'tag': 'YResolution', 'type': 'RATIONAL', 'value': Fraction(72, 1)}, {'tag': 'ResolutionUnit', 'type': 'SHORT', 'value': 2}, {'tag': 'Software', 'type': 'ASCII', 'value': '14.7.1'}, {'tag': 'DateTime', 'type': 'ASCII', 'value': '2021:09:25 13:23:14'}, {'tag': 'Host Compduiter', 'type': 'ASCII', 'value': 'iPhone SE (2nd generation)'}, {'tag': 'TileWidth', 'type': 'LONG', 'value': 512}, {'tag': 'TileHeight', 'type': 'LONG', 'value': 512}, {'tag': 'YCbCrPositioning', 'type': 'SHORT', 'value': 1}, {'tag': 'Exif IFD Pointer', 'type': 'LONG', 'value': 276}]}"
+>>> str(exif_struct)                                     # 13 IFD fields (modified by hand for readability)
+"{'Byte order': 'big', 'Offset': 14, 'IFD count': 13, 'IFDs': [
+  {'tag': 'Make', 'type': 'ASCII', 'value': 'Apple'},
+  {'tag': 'Model', 'type': 'ASCII', 'value': 'iPhone SE (2nd generation)'},
+  {'tag': 'Orientation', 'type': 'SHORT', 'value': 6},
+  {'tag': 'XResolution', 'type': 'RATIONAL', 'value': Fraction(72, 1)},
+  {'tag': 'YResolution', 'type': 'RATIONAL', 'value': Fraction(72, 1)},
+  {'tag': 'ResolutionUnit', 'type': 'SHORT', 'value': 2},
+  {'tag': 'Software', 'type': 'ASCII', 'value': '14.7.1'},
+  {'tag': 'DateTime', 'type': 'ASCII', 'value': '2021:09:25 13:23:14'},
+  {'tag': 'Host Compduiter', 'type': 'ASCII', 'value': 'iPhone SE (2nd generation)'},
+  {'tag': 'TileWidth', 'type': 'LONG', 'value': 512},
+  {'tag': 'TileHeight', 'type': 'LONG', 'value': 512},
+  {'tag': 'YCbCrPositioning', 'type': 'SHORT', 'value': 1},
+  {'tag': 'Exif IFD Pointer', 'type': 'LONG', 'value': 276}
+]}"
 ```
 
 ### Jfif
